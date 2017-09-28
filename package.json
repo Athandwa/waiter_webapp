@@ -1,0 +1,22 @@
+{
+  "name": "waiter_webapp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "index.js",
+    "test": "mocha"
+  },
+  "author": "Lakhiwe",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
+    "mongodb": "^2.2.31",
+    "mongoose": "^4.11.13"
+  },
+  "devDependencies": {},
+  "description": ""
+}
