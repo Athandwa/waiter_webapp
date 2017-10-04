@@ -1,17 +1,18 @@
-<h1>Waiters Availability</h1>
-
-
 <div class="container-fluid">
     <div class="w3-row-padding">
-<form class="">
-  <input type="checkbox" name="days" value="Sunday">Sunday
-  <input type="checkbox" name="days" value="Monday">Monday
-  <input type="checkbox" name="days" value="Tuesday">Tuesday
-  <input type="checkbox" name="days" value="Wednesday">Wednesday
-  <input type="checkbox" name="days" value="Thursday">Thursday
-  <input type="checkbox" name="days" value="Friday">Friday
-  <input type="checkbox" name="days" value="Saturday">Saturday
-</form>
+<form class="" action="/waiters/:{{name}}" method="post">
 
+  <input type="checkbox" name="days" value="Sunday" {{#if daysName.sunday}}checked{{/if}}>Sunday
+  <input type="checkbox" name="days" value="Monday" {{#if daysName.monday}}checked{{/if}}>Monday
+  <input type="checkbox" name="days" value="Tuesday" {{#if daysName.tuesday}}checked{{/if}}>Tuesday
+  <input type="checkbox" name="days" value="Wednesday" {{#if daysName.wednesday}}checked{{/if}}>Wednesday
+  <input type="checkbox" name="days" value="Thursday" {{#if daysName.thursday}}checked{{/if}}>Thursday
+  <input type="checkbox" name="days" value="Friday" {{#if daysName.friday}}checked{{/if}}>Friday
+  <input type="checkbox" name="days" value="Saturday" {{#if daysName.saturday}}checked{{/if}}>Saturday <br><br>
+  <button type="submit" name="button" class="">Submit</button>
+</form>
+{{updateMessage}}
+<br>
+{{messageForShifts}}
 </div>
 </div>
