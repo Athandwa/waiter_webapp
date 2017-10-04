@@ -62,20 +62,10 @@ app.post("/waiters/:username", function(req, res) {
             console.log(err);
         } else {
             res.render("home", {
-                messageForShifts: results.days
+                  messageForShifts: results.days
                 // updateMessage: updateMessage
             })
             console.log(results);
-        }
-
-
-    });
-    // This saves the data to the database
-    waitersModel.save(function(err, results) {
-        if (error) {
-            console.error(error);
-        } else {
-            return results;
         }
     });
 });
@@ -83,6 +73,7 @@ app.post("/waiters/:username", function(req, res) {
 app.get('/days', function(req, res) {
 
 });
+
 
 
 var port = process.env.PORT || 3000;
