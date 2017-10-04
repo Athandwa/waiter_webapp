@@ -2,13 +2,13 @@
     <div class="w3-row-padding">
       <strong>{{message}}</strong>
 <form class="" action="" method="post">
-  <input type="checkbox" name="days" value="Sunday" {{#if sunday}}checked{{/if}}>Sunday
-  <input type="checkbox" name="days" value="Monday" {{#if monday}}checked{{/if}}>Monday
-  <input type="checkbox" name="days" value="Tuesday" {{#if tuesday}}checked{{/if}}>Tuesday
-  <input type="checkbox" name="days" value="Wednesday" {{#if wednesday}}checked{{/if}}>Wednesday
-  <input type="checkbox" name="days" value="Thursday" {{#if thursday}}checked{{/if}}>Thursday
-  <input type="checkbox" name="days" value="Friday" {{#if friday}}checked{{/if}}>Friday
-  <input type="checkbox" name="days" value="Saturday" {{#if saturday}}checked{{/if}}>Saturday <br><br>
+  <input type="checkbox" name="days" value="sunday" {{#if days.sunday}}checked{{/if}}>Sunday
+  <input type="checkbox" name="days" value="monday" {{#if days.monday}}checked{{/if}}>Monday
+  <input type="checkbox" name="days" value="tuesday" {{#if days.tuesday}}checked{{/if}}>Tuesday
+  <input type="checkbox" name="days" value="wednesday" {{#if days.wednesday}}checked{{/if}}>Wednesday
+  <input type="checkbox" name="days" value="thursday" {{#if days.thursday}}checked{{/if}}>Thursday
+  <input type="checkbox" name="days" value="friday" {{#if days.friday}}checked{{/if}}>Friday
+  <input type="checkbox" name="days" value="saturday" {{#if days.saturday}}checked{{/if}}>Saturday <br><br>
   <button type="submit" name="button" class="btn btn-primary">Submit</button>
 
 </form>

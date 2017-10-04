@@ -63,15 +63,63 @@ app.post("/waiters/:username", function(req, res) {
         } else {
             res.render("home", {
                   messageForShifts: results.days
-                // updateMessage: updateMessage
+
+
             })
-            console.log(results);
+            // console.log(results);
         }
     });
 });
 
 app.get('/days', function(req, res) {
 
+  models.waitersModel.find({}, function (err, waitersResults) {
+    if (err) {
+      console.log(err);
+    }
+    var Sunday = [];
+    var Monday = [];
+    var Tuesday = [];
+    var Wednesday = [];
+    var Thursday = [];
+    var Friday = [];
+    var Saturday = [];
+
+
+
+  waitersResults.forEach(function(dayResults){
+    var Days = dayResults.days
+    var Names = dayResults.name
+
+  for(var i = 0; i < Days.length; i++) {
+   var savedWaiterDays =  Days[i]
+
+    if (savedWaiterDays === "sunday"){
+        Sunday.push(Names);
+    }
+    if (savedWaiterDays === "monday"){
+      Monday.push(Names);
+    }
+    if (savedWaiterDays === "tuesday"){
+      Tuesday.push(Names)
+    }
+    if (savedWaiterDays === "wednesday"){
+      Wednesday.push(Names)
+    }
+    if (savedWaiterDays === "thursday"){
+      Thursday.push(Names)
+    }
+    if (savedWaiterDays === "friday"){
+      Friday.push(Names)
+    }
+    if (savedWaiterDays === "saturday"){
+      Saturday.push(Names)
+    }
+  }
+})
+console.log(Monday);
+
+  });
 });
 
 
