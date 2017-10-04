@@ -1,15 +1,16 @@
 <div class="container-fluid">
     <div class="w3-row-padding">
-<form class="" action="/waiters/:{{name}}" method="post">
+      <strong>{{message}}</strong>
+<form class="" action="" method="post">
+  <input type="checkbox" name="days" value="Sunday" {{#if sunday}}checked{{/if}}>Sunday
+  <input type="checkbox" name="days" value="Monday" {{#if monday}}checked{{/if}}>Monday
+  <input type="checkbox" name="days" value="Tuesday" {{#if tuesday}}checked{{/if}}>Tuesday
+  <input type="checkbox" name="days" value="Wednesday" {{#if wednesday}}checked{{/if}}>Wednesday
+  <input type="checkbox" name="days" value="Thursday" {{#if thursday}}checked{{/if}}>Thursday
+  <input type="checkbox" name="days" value="Friday" {{#if friday}}checked{{/if}}>Friday
+  <input type="checkbox" name="days" value="Saturday" {{#if saturday}}checked{{/if}}>Saturday <br><br>
+  <button type="submit" name="button" class="btn btn-primary">Submit</button>
 
-  <input type="checkbox" name="days" value="Sunday" {{#if daysName.sunday}}checked{{/if}}>Sunday
-  <input type="checkbox" name="days" value="Monday" {{#if daysName.monday}}checked{{/if}}>Monday
-  <input type="checkbox" name="days" value="Tuesday" {{#if daysName.tuesday}}checked{{/if}}>Tuesday
-  <input type="checkbox" name="days" value="Wednesday" {{#if daysName.wednesday}}checked{{/if}}>Wednesday
-  <input type="checkbox" name="days" value="Thursday" {{#if daysName.thursday}}checked{{/if}}>Thursday
-  <input type="checkbox" name="days" value="Friday" {{#if daysName.friday}}checked{{/if}}>Friday
-  <input type="checkbox" name="days" value="Saturday" {{#if daysName.saturday}}checked{{/if}}>Saturday <br><br>
-  <button type="submit" name="button" class="">Submit</button>
 </form>
 {{updateMessage}}
 <br>
