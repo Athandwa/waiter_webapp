@@ -27,3 +27,23 @@ h1{
 .w3-row-padding {
     background-color:	#F08080
 }
+.color1{
+  background-color: #228B22;
+}
+.color2{
+  background-color: #B22222
+}
+.color3{
+  background-color: #FF7F50;
+}
+li{
+  list-style: none;
+}
+.messageForShifts{
+  color: #228B22;
+  font-style: italic;
+}
+img {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}

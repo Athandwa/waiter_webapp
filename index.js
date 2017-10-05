@@ -51,7 +51,7 @@ app.post("/waiters/:username", function(req, res) {
     var workDays = req.body.days;
     var workingDays = {};
     var updateMessage = "Thank you, your shifts has been updated";
-    var messageForShifts = "Thank you, your shift has been added";
+    var messageShifts = "Thank you, your shifts has been successfully added";
 
     models.waitersModel.create({
         name: username,
@@ -62,67 +62,109 @@ app.post("/waiters/:username", function(req, res) {
             console.log(err);
         } else {
             res.render("home", {
-                  messageForShifts: results.days
-
-
+                messageForShifts: messageShifts
             })
-            // console.log(results);
+            console.log(results);
         }
+    });
+
+    // models.waitersModel.findOneAndUpdate({
+    //     name: username
+    // }, {
+    //     days: workDays
+    // },function (err, results) {
+    //   if (err) {
+    //       console.log(err);
+    //   }
+    //     res.render("waiters")
+    //
+    // })
+});
+
+function colorForDays(daysColor) {
+    if (daysColor === 3) {
+        return "color1";
+    } if (daysColor > 3) {
+        return "color2";
+    } if (daysColor < 3) {
+        return "color3";
+    }
+}
+
+app.get('/days', function(req, res) {
+    models.waitersModel.find({}, function(err, waitersResults) {
+        if (err) {
+            console.log(err);
+        }
+        var Sunday = [];
+        var Monday = [];
+        var Tuesday = [];
+        var Wednesday = [];
+        var Thursday = [];
+        var Friday = [];
+        var Saturday = [];
+
+        waitersResults.forEach(function(dayResults) {
+            var Days = dayResults.days
+            var Names = dayResults.name
+
+            for (var i = 0; i < Days.length; i++) {
+                var savedWaiterDays = Days[i]
+
+                if (savedWaiterDays === "sunday") {
+                    Sunday.push(Names);
+                }
+                if (savedWaiterDays === "monday") {
+                    Monday.push(Names);
+                }
+                if (savedWaiterDays === "tuesday") {
+                    Tuesday.push(Names)
+                }
+                if (savedWaiterDays === "wednesday") {
+                    Wednesday.push(Names)
+                }
+                if (savedWaiterDays === "thursday") {
+                    Thursday.push(Names)
+                }
+                if (savedWaiterDays === "friday") {
+                    Friday.push(Names)
+                }
+                if (savedWaiterDays === "saturday") {
+                    Saturday.push(Names)
+                }
+            }
+        })
+
+        res.render("waiters", {
+            day1: Sunday,
+            color1: colorForDays(Sunday.length),
+            day2: Monday,
+            color2: colorForDays(Monday.length),
+            day3: Tuesday,
+            color3: colorForDays(Tuesday.length),
+            day4: Wednesday,
+            color4: colorForDays(Wednesday.length),
+            day5: Thursday,
+            color5: colorForDays(Thursday.length),
+            day6: Friday,
+            color6: colorForDays(Friday.length),
+            day7: Saturday,
+            color7: colorForDays(Saturday.length)
+        })
     });
 });
 
-app.get('/days', function(req, res) {
-
-  models.waitersModel.find({}, function (err, waitersResults) {
+app.post("/reset", function (req, res) {
+  models.waitersModel.remove({}, function (err, results) {
     if (err) {
-      console.log(err);
+        console.log(err);
     }
-    var Sunday = [];
-    var Monday = [];
-    var Tuesday = [];
-    var Wednesday = [];
-    var Thursday = [];
-    var Friday = [];
-    var Saturday = [];
-
-
-
-  waitersResults.forEach(function(dayResults){
-    var Days = dayResults.days
-    var Names = dayResults.name
-
-  for(var i = 0; i < Days.length; i++) {
-   var savedWaiterDays =  Days[i]
-
-    if (savedWaiterDays === "sunday"){
-        Sunday.push(Names);
+    else {
+      console.log("data");
     }
-    if (savedWaiterDays === "monday"){
-      Monday.push(Names);
-    }
-    if (savedWaiterDays === "tuesday"){
-      Tuesday.push(Names)
-    }
-    if (savedWaiterDays === "wednesday"){
-      Wednesday.push(Names)
-    }
-    if (savedWaiterDays === "thursday"){
-      Thursday.push(Names)
-    }
-    if (savedWaiterDays === "friday"){
-      Friday.push(Names)
-    }
-    if (savedWaiterDays === "saturday"){
-      Saturday.push(Names)
-    }
-  }
+    res.render("waiters")
+  })
 })
-console.log(Monday);
-
-  });
-});
-
-
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
