@@ -50,35 +50,43 @@ app.post("/waiters/:username", function(req, res) {
     var username = req.params.username;
     var workDays = req.body.days;
     var workingDays = {};
-    var updateMessage = "Thank you, your shifts has been updated";
+    //var updateMessage = "Thank you, your shifts has been updated";
     var messageShifts = "Thank you, your shifts has been successfully added";
 
-    models.waitersModel.create({
-        name: username,
-        days: workDays
+  models.waitersModel.findOneAndUpdate({
+    name: username
+  }, {
+    days: workDays
+  },function (err, results) {
+    if (err) {
+      console.log(err);
+    }
+    else {
+      if (!results) {
+        models.waitersModel.create({
+          name: username,
+          days: workDays
 
-    }, function(err, results) {
-        if (err) {
+        }, function(err, results) {
+          if (err) {
             console.log(err);
-        } else {
+          } else {
             res.render("home", {
-                messageForShifts: messageShifts
+              messageForShifts: messageShifts
             })
             console.log(results);
-        }
-    });
+          }
+        });
 
-    // models.waitersModel.findOneAndUpdate({
-    //     name: username
-    // }, {
-    //     days: workDays
-    // },function (err, results) {
-    //   if (err) {
-    //       console.log(err);
-    //   }
-    //     res.render("waiters")
-    //
-    // })
+      }else {
+        res.render("waiters")
+      }
+    }
+
+  })
+
+
+
 });
 
 function colorForDays(daysColor) {
