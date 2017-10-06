@@ -136,9 +136,13 @@ app.get('/days', function(req, res) {
                 }
                 if (savedWaiterDays === "friday") {
                     Friday.push(Names)
+                    console.log("********Friday*******"+Friday);
+
                 }
                 if (savedWaiterDays === "saturday") {
                     Saturday.push(Names)
+                    console.log("********Saturday*********");
+                    console.log(Saturday);
                 }
             }
         })
@@ -146,16 +150,22 @@ app.get('/days', function(req, res) {
         res.render("waiters", {
             day1: Sunday,
             color1: colorForDays(Sunday.length),
+
             day2: Monday,
             color2: colorForDays(Monday.length),
+
             day3: Tuesday,
             color3: colorForDays(Tuesday.length),
+
             day4: Wednesday,
             color4: colorForDays(Wednesday.length),
+
             day5: Thursday,
             color5: colorForDays(Thursday.length),
+
             day6: Friday,
             color6: colorForDays(Friday.length),
+
             day7: Saturday,
             color7: colorForDays(Saturday.length)
         })

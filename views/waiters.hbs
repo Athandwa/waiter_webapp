@@ -15,16 +15,17 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <ul>
                           <td class="{{color1}}">
                           {{#each day1}}
                             <li>{{this}}</li>
                           {{/each}}
+                        </td>
 
-                        </td  class="{{color2}}">
+                        <td class="{{color2}}">
                           {{#each day2}}
                           <li>{{this}}</li>
                           {{/each}}
+                        </td>
 
                         <td class="{{color3}}">
                           {{#each day3}}
@@ -50,12 +51,17 @@
                           {{/each}}
                         </td>
 
+                        <td class="{{color6}}">
+                          {{#each day6}}
+                          <li>{{this}}</li>
+                          {{/each}}
+                        </td>
+
                         <td class="{{color7}}">
                           {{#each day7}}
                           <li>{{this}}</li>
                           {{/each}}
                         </td>
-                      </ul>
                     </tr>
                   </tbody>
             </table>
