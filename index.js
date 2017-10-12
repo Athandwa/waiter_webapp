@@ -136,13 +136,13 @@ app.get('/days', function(req, res) {
                 }
                 if (savedWaiterDays === "friday") {
                     Friday.push(Names)
-                    console.log("********Friday*******"+Friday);
+                    //console.log("********Friday*******"+Friday);
 
                 }
                 if (savedWaiterDays === "saturday") {
                     Saturday.push(Names)
-                    console.log("********Saturday*********");
-                    console.log(Saturday);
+                    //console.log("********Saturday*********");
+                    //console.log(Saturday);
                 }
             }
         })
