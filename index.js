@@ -40,10 +40,24 @@ app.set("view engine", "hbs")
 
 app.get("/waiters/:username", function(req, res) {
     var username = req.params.username;
+    var Days = req.body.days
     message = "Please select your working days " + username;
-    res.render("home", {
-        message: message
+    models.waitersModel.find({name: username, days: Days },
+    function (err, results) {
+      if (err) {
+        console.log(err);
+      }else {
+        res.render("home", {
+          name: username,
+          days: Days,
+          message: message
+        })
+        console.log(results);
+
+      }
     })
+
+
 });
 
 app.post("/waiters/:username", function(req, res) {
@@ -51,7 +65,7 @@ app.post("/waiters/:username", function(req, res) {
     var workDays = req.body.days;
     var workingDays = {};
     //var updateMessage = "Thank you, your shifts has been updated";
-    var messageShifts = "Thank you, your shifts has been successfully added";
+    var messageShifts = username + " thank you, your shifts has been successfully added";
 
   models.waitersModel.findOneAndUpdate({
     name: username
