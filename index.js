@@ -18,14 +18,6 @@ app.use(bodyParser.urlencoded({
 // parse application/json
 app.use(bodyParser.json());
 
-// app.use(session({
-//     secret: 'keyboard cat',
-//     cookie: {
-//         maxAge: 60000 * 30
-//     }
-// }));
-// app.use(flash());
-
 // setting rendering engine
 app.engine("hbs", exphbs({
     defaultLayout: "main",
@@ -41,20 +33,26 @@ app.set("view engine", "hbs")
 app.get("/waiters/:username", function(req, res) {
     var username = req.params.username;
     var Days = req.body.days
+
+
     message = "Please select your working days " + username;
-    models.waitersModel.find({name: username, days: Days },
+    models.waitersModel.findOne({name: username},
     function (err, results) {
-      if (err) {
-        console.log(err);
-      }else {
+      // if (err) {
+      //   console.log(err);
+      // }
+      if (results) {
+console.log(results);
+        daysChecked(results)
         res.render("home", {
           name: username,
-          days: Days,
-          message: message
+          message: message,
+          days: shiftMap
         })
         console.log(results);
 
       }
+
     })
 
 
@@ -102,6 +100,20 @@ app.post("/waiters/:username", function(req, res) {
 
 
 });
+
+
+var shiftMap ={}
+
+var daysChecked = function (checkedShifts) {
+  for (var i = 0; i < checkedShifts.days.length; i++) {
+    if (shiftMap[checkedShifts.days[i]] === undefined) {
+        shiftMap[checkedShifts.days[i]] = "checked"
+    }
+    return shiftMap
+  }
+}
+// var username = req.body.username
+
 
 function colorForDays(daysColor) {
     if (daysColor === 3) {
